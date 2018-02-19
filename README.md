@@ -40,7 +40,7 @@ var schedule5 = new Schedule("*-*-1 8:00", () => {
 
 This module is backed by 
 [sfn-schedule-parser](https://github.com/hyurl/sfn-schedule-parser), which 
-exposes an common API for Node.js to build schedulers. For full supported 
+exposes a common API for Node.js to build schedulers. For full supported 
 patterns, you should follow it for newest features.
 
 ## Return values from the task
