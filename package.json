@@ -1,0 +1,29 @@
+{
+  "name": "sfn-scheduler",
+  "version": "0.1.0",
+  "description": "Simple Friendly Node.js Schedule for tasks.",
+  "main": "dist/index.js",
+  "types": "src/index.ts",
+  "scripts": {
+    "test": "node test"
+  },
+  "keywords": [
+    "sfn",
+    "schedule"
+  ],
+  "author": {
+    "name": "Ayon Lee",
+    "email": "i@hyurl.com",
+    "url": "http://hyurl.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hyurl/sfn-scheduler.git"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "hide-protected-properties": "^0.1.0",
+    "sfn-schedule-parser": "^0.3.3",
+    "tslib": "^1.9.0"
+  }
+}
