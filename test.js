@@ -1,5 +1,5 @@
-const assert = require("assert");
-const { Schedule } = require("./");
+var assert = require("assert");
+var Schedule = require("./").default;
 
 var count = 0;
 

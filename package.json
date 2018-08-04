@@ -1,6 +1,6 @@
 {
   "name": "sfn-scheduler",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Simple Friendly Node.js Scheduler for tasks.",
   "main": "dist/index.js",
   "types": "src/index.ts",
