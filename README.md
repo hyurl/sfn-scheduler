@@ -13,6 +13,8 @@ npm i sfn-scheduler
 ```javascript
 const { Schedule } = require("sfn-scheduler");
 
+// the schedule will run automatically after you've instantiated the class
+
 var schedule1 = new Schedule("every 2 seconds", () => {
     console.log("This schedule runs every 2 seconds.");
 });
@@ -20,8 +22,6 @@ var schedule1 = new Schedule("every 2 seconds", () => {
 var schedule2 = new Schedule("in 2 days", () => {
     console.log("This schedule has been waiting for 2 days.");
 });
-
-console.log(schedule2);
 
 var schedule3 = new Schedule("20:00", () => {
     console.log("This schedule runs at 20:00 this evening.");
@@ -37,6 +37,19 @@ var schedule5 = new Schedule("*-*-1 8:00", () => {
 ```
 
 ## Schedule pattern
+
+Here I will list several patterns (statements), just to demonstrate the 
+capability of this package, they're all in human language.
+
+- `runs the schedule every 2 hours`
+- `I wish to run the program in 2 hours`
+- `execute the application on Monday`
+- `runs at 20:00 today`
+- `runs in 2 days`
+- `runs every day at 12:00`
+- `only runs on Monday in this month`
+- `2018-8-* 12:00`
+- `runs in Aug. 2018, every day at 12:00`
 
 This module is backed by 
 [sfn-schedule-parser](https://github.com/hyurl/sfn-schedule-parser), which 
@@ -73,3 +86,6 @@ var schedule = new Schedule("runs every 2 minutes", () => {
     schedule.stop();
 });
 ```
+
+Once you have stopped the schedule, you can call method `resume()` to restart 
+it.

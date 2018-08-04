@@ -22,8 +22,8 @@
   },
   "license": "MIT",
   "dependencies": {
-    "hide-protected-properties": "^0.1.0",
-    "sfn-schedule-parser": "^0.3.3",
-    "tslib": "^1.9.0"
+    "hide-protected-properties": "^0.1.1",
+    "sfn-schedule-parser": "^0.4.0",
+    "tslib": "^1.9.3"
   }
 }

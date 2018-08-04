@@ -1,12 +1,8 @@
-import { parse, ScheduleInfo } from "sfn-schedule-parser";
+import { ScheduleInfo } from "sfn-schedule-parser";
 import HideProtectedProperties = require("hide-protected-properties");
 
-@HideProtectedProperties
-export class Schedule {
-    readonly pattern: string;
+export class Schedule extends ScheduleInfo {
     readonly task: (data?: any) => any;
-    /** @private */
-    private _info: ScheduleInfo;
     /** @private */
     private _timer: NodeJS.Timer;
     /** @private */
@@ -14,16 +10,14 @@ export class Schedule {
 
     /** Creates a new schedule. */
     constructor(pattern: string, task: (data?: any) => any) {
-        this.pattern = pattern;
+        super(pattern);
         this.task = task;
-        this._info = parse(this.pattern);
-
-        this.setTimer();
+        this.resume();
     }
 
     /** @private */
-    private ontimeout(data?: any) {
-        let state = this._info.getState();
+    private onTimeout(data?: any) {
+        let state = this.getState();
 
         if (state === 0) {
             // run the task
@@ -34,21 +28,24 @@ export class Schedule {
                 data = this.task();
             }
 
-            if (this._info.once) {
+            if (this.once) {
                 this.stop();
-            } else {
-                this.setTimer(data);
+            } else if (this._timer !== null) {
+                this.resume(data);
             }
         } else if (state === -1) {
             this.stop();
         }
     }
 
-    /** @private */
-    private setTimer(data?: any) {
+    /**
+     * Continue running the schedule.
+     * @param data The data passed to the task function.
+     */
+    resume(data?: any) {
         this._timer = setTimeout(() => {
-            this.ontimeout(data);
-        }, this._info.getBestTimeout());
+            this.onTimeout(data);
+        }, this.getBestTimeout());
     }
 
     /** Stops the schedule. */
@@ -59,3 +56,7 @@ export class Schedule {
         }
     }
 }
+
+export default Schedule;
+
+HideProtectedProperties(Schedule);
